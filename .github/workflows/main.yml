@@ -24,7 +24,7 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE}}
         port: 2222
         script: |
-          cd ~/www/mynetdok.com/
+          cd ~/www/mynetdok.com/githubActionsTrial
           git pull origin main
           git status
           npm install --only=prod
