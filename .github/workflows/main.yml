@@ -1,34 +1,26 @@
 name: Deploy
 
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch//final
   push:
     branches: [ main ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"//trial//another one
   build:
-    # The type of runner that the job will run on test
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps: 
-    - name: Install sshpass
-      run: sudo apt-get install -y sshpass 
-    - name: Deploy using ssh
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        passphrase: ${{ secrets.PASSPHRASE}}
-        port: 2222
-        script: |
-          eval `ssh-agent -s`
-          ssh-add ~/.ssh/id_rsa
-          cd ~/www/mynetdok.com/githubActionsTrial
-          sshpass -p 'tishmalo4654' git pull origin main
-          sshpass -p 'tishmalo4654' git status
-       
+    steps:
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass 
+
+      - name: Deploy using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          port: 2222
+          script: |
+            cd ~/www/mynetdok.com/githubActionsTrial
+            sshpass -p ${{ secrets.PASSPHRASE }} git pull origin main
+            sshpass -p ${{ secrets.PASSPHRASE }} git status
