@@ -21,7 +21,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        passphrase: ${{ secrets.PASSPHRASE}}
         port: 2222
         script: |
           cd ~/www/mynetdok.com/githubActionsTrial
