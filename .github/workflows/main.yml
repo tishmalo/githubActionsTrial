@@ -24,6 +24,6 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE}}
         port: 2222
         script: |
-          cd ~/www/mynetdok.com/githubActionsTrial
+          cd ~/www/mynetdok.com/
           git pull origin main
           git status
