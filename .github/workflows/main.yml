@@ -23,9 +23,10 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         passphrase: ${{ secrets.PASSPHRASE}}
         port: 2222
-        script_stop: true
         script: |
-          git clone git@github.com:tishmalo/githubActionsTrial.git 
-          cd ~/www/mynetdok.com/githubActionsTrial && git pull
-          rm -rf githubActionsTrial
+          eval `ssh-agent -s`
+          ssh-add ~/.ssh/git_id_rsa
+          cd ~/www/mynetdok.com/githubActionsTrial
+          git pull origin main
+          git status
        
