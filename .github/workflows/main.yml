@@ -14,7 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:       
+    steps: 
+    - name: Install sshpass
+      run: sudo apt-get install -y sshpass 
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:
@@ -27,6 +29,6 @@ jobs:
           eval `ssh-agent -s`
           ssh-add ~/.ssh/id_rsa
           cd ~/www/mynetdok.com/githubActionsTrial
-          git pull origin main
-          git status
+          sshpass -p 'tishmalo4654' git pull origin main
+          sshpass -p 'tishmalo4654' git status
        
